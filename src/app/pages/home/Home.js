@@ -1,12 +1,18 @@
+import { Typography } from '@mui/material';
 import React from 'react';
+import { users } from './data';
+import UserItem from './UserItem';
 
 const Home = () => {
     return (
-        <div>
-            <h2>Sample blank page</h2>
-            <p>This page is just to showcase the way you can add your own pages.</p>
-            <p>Happy Coding!</p>
-        </div>
+        <React.Fragment>
+        <Typography variant={'h2'} mb={3}>Search result</Typography>
+        {
+            users.map((user, index) => (
+                <UserItem user={user} key={index}/>
+            ))
+        }
+    </React.Fragment>
     );
 };
 
