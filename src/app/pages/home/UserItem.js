@@ -58,12 +58,12 @@ const UserItem = ({user}) => {
                                     }}
                                     alt={`${user.firstName} 
                                     ${user.lastName}`}
-                                    src={user.profilePic}
+                                    src={user.avatar}
                                 />
                             </Badge>
                         </Item>
                         <Item>
-                            <Typography variant={"h6"} mb={.5}>{`${user.firstName} ${user.lastName}`}</Typography>
+                            <Typography variant={"h6"} mb={.5}>{`${user.name}`}</Typography>
                             <Typography variant={"body1"} color="text.secondary">{user.email}</Typography>
                         </Item>
                     </Stack>
@@ -77,7 +77,7 @@ const UserItem = ({user}) => {
                     
                 >
                     <Typography variant={"h6"}  mt={1} mb={.5}>Designation</Typography>
-                    <Typography variant={"body1"} color="text.secondary">{user.title}</Typography>
+                    <Typography variant={"body1"} color="text.secondary">{user.designation}</Typography>
                 </Item>
                 <Item
                     sx={{
@@ -89,7 +89,7 @@ const UserItem = ({user}) => {
                         <Item>
                             <Typography variant={"body1"} color="text.secondary">Linkedin</Typography>
                             <Typography variant={"h6"} mb={.5}>
-                                  {user.socialLinks.linkedIn ? <Check color="success" /> : <CloseOutlinedIcon color="error" />   }
+                                  {user.linkedIn ? <Check color="success" /> : <CloseOutlinedIcon color="error" />   }
                                 
                             </Typography>
 
@@ -97,19 +97,27 @@ const UserItem = ({user}) => {
                         <Item>
                             <Typography variant={"body1"} color="text.secondary">Twitter</Typography>
                             <Typography variant={"h6"} mb={.5}>
-                            {user.socialLinks.twitter ? <Check color="success" /> : <CloseOutlinedIcon color="error" />   }
+                            {user.twitter ? <Check color="success" /> : <CloseOutlinedIcon color="error" />   }
                             </Typography>
 
                         </Item>
                         <Item>
                             <Typography variant={"body1"} color="text.secondary">Facebook</Typography>
                             <Typography variant={"h6"} mb={.5}>
-                            {user.socialLinks.facebook ? <Check color="success" /> : <CloseOutlinedIcon color="error" />   }
+                            {user.facebook ? <Check color="success" /> : <CloseOutlinedIcon color="error" />   }
+                            </Typography>
+
+                        </Item>
+                        <Item>
+                            <Typography variant={"body1"} color="text.secondary">Score</Typography>
+                            <Typography variant={"h6"} mb={.5} mt={1}>
+                            {user.complianceScore}
                             </Typography>
 
                         </Item>
                     </Stack>
                 </Item>
+                
                 <Item
                     sx={{
                         ml: 'auto',
@@ -117,10 +125,8 @@ const UserItem = ({user}) => {
                     }}
                 >
                     <Button onClick={handleClick} sx={{minWidth: 92}} disableElevation variant={"contained"} size={"small"}
-                            // color={user.isFollowing ? "error" : "primary"}>
                             color={"primary"}>
-
-                        {/* {user.isFollowing ? "Unfollow" : "Follow"} */} Details
+ Details
                     </Button>
                 </Item>
                 <Item sx={{ml: {xs: 'auto', sm: 0}}}>

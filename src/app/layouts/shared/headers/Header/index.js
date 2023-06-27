@@ -62,7 +62,7 @@ const Header = () => {
                             height: '100%',
                         }}
                     >
-                        <SearchGlobal
+                        {/* <SearchGlobal
                             sx={{
                                 maxWidth: 'none',
                                 height: '100%',
@@ -77,7 +77,7 @@ const Header = () => {
                                     pr: 6,
                                 }
                             }}
-                        />
+                        /> */}
                         <IconButton
                             sx={{
                                 position: 'absolute',
@@ -93,14 +93,14 @@ const Header = () => {
                     </Div>
                 </Slide>
             }
-            {
+            {/* {
                 !showDropdownSearch &&
                 <SearchGlobal
                     sx={{
                         maxWidth: {xs: 240, md: 320}
                     }}
                 />
-            }
+            } */}
             <Stack direction="row" alignItems="center" spacing={1.25} sx={{ml: "auto"}}>
                 {
                     showDropdownSearch &&

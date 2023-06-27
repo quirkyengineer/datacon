@@ -21,12 +21,14 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
     display: 'flex',
     borderRadius: 24,
     boxShadow: theme.shadows[25],
+backgroundColor: '#FFFFFF',
 
     '& .MuiInputBase-input': {
         padding: theme.spacing(1, 1, 1, 0),
         // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(4)})`,
         transition: theme.transitions.create('width'),
+        // backgroundColor: '#FFFFFF',
         width: '100%',
         height: 24
     },
