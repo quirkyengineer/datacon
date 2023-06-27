@@ -66,38 +66,38 @@ const Header = () => {
                     </Item>
                 </Stack>
             }
-            tabs={
-                <List
-                    disablePadding
-                    sx={{
-                        display: 'flex',
-                        minWidth: 0,
+            // tabs={
+            //     <List
+            //         disablePadding
+            //         sx={{
+            //             display: 'flex',
+            //             minWidth: 0,
 
-                    }}
-                >
-                    <StyledMenuItem>Timeline</StyledMenuItem>
-                    <StyledMenuItem>About</StyledMenuItem>
-                    <StyledMenuItem>Photos</StyledMenuItem>
-                    <StyledMenuItem>Friends</StyledMenuItem>
-                    <StyledMenuItem>More</StyledMenuItem>
-                </List>
-            }
-            action={
-                <Button
-                    disableRipple
-                    variant="text"
-                    startIcon={<SettingsIcon/>}
-                    sx={{
-                        color: 'inherit',
-                        textTransform: 'none',
-                        '&:hover': {
-                            backgroundColor: 'transparent'
-                        }
-                    }}
-                >
-                    Settings
-                </Button>
-            }
+            //         }}
+            //     >
+            //         <StyledMenuItem>Timeline</StyledMenuItem>
+            //         <StyledMenuItem>About</StyledMenuItem>
+            //         <StyledMenuItem>Photos</StyledMenuItem>
+            //         <StyledMenuItem>Friends</StyledMenuItem>
+            //         <StyledMenuItem>More</StyledMenuItem>
+            //     </List>
+            // }
+            // action={
+            //     <Button
+            //         disableRipple
+            //         variant="text"
+            //         startIcon={<SettingsIcon/>}
+            //         sx={{
+            //             color: 'inherit',
+            //             textTransform: 'none',
+            //             '&:hover': {
+            //                 backgroundColor: 'transparent'
+            //             }
+            //         }}
+            //     >
+            //         Settings
+            //     </Button>
+            // }
             sx={{
                 position: 'relative',
                 zIndex: 1,

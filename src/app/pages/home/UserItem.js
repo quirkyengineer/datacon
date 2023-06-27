@@ -11,12 +11,18 @@ import Span from "@jumbo/shared/Span";
 import { Cancel, Check, HomeRepairServiceOutlined } from '@mui/icons-material';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { Cross } from 'recharts';
+import { useNavigate } from 'react-router-dom';
 
 const Item = styled(Span)(({theme}) => ({
     padding: theme.spacing(0, 1),
 }));
 
 const UserItem = ({user}) => {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate("/user/profile");   // Navigate to the details page
+    };
     return (
         <Card sx={{mb: 1}}>
             <Stack direction={"row"} alignItems={"center"} sx={{p: theme => theme.spacing(2, 1)}}>
@@ -110,7 +116,7 @@ const UserItem = ({user}) => {
                         display: {xs: 'none', sm: 'block'}
                     }}
                 >
-                    <Button sx={{minWidth: 92}} disableElevation variant={"contained"} size={"small"}
+                    <Button onClick={handleClick} sx={{minWidth: 92}} disableElevation variant={"contained"} size={"small"}
                             // color={user.isFollowing ? "error" : "primary"}>
                             color={"primary"}>
 
