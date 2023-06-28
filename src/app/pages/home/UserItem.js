@@ -21,7 +21,7 @@ const UserItem = ({user}) => {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate("/user/profile");   // Navigate to the details page
+        navigate(`/user/profile/${user.id}`);
     };
     return (
         <Card sx={{mb: 1}}>
@@ -129,11 +129,11 @@ const UserItem = ({user}) => {
  Details
                     </Button>
                 </Item>
-                <Item sx={{ml: {xs: 'auto', sm: 0}}}>
+                {/* <Item sx={{ml: {xs: 'auto', sm: 0}}}>
                     <IconButton aria-label="settings">
                         <MoreHorizIcon/>
                     </IconButton>
-                </Item>
+                </Item> */}
             </Stack>
         </Card>
     );

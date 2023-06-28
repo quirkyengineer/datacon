@@ -30,18 +30,18 @@ const Item = styled("div")({
 });
 
 
-const Header = () => {
-    return (
+const Header = ({user}) => {
+     return (
         <ContentHeader
             avatar={
                 <Avatar
                     sx={{width: 72, height: 72}}
                     alt={"Remy Sharp"}
-                    src={getAssetPath(`${ASSET_AVATARS}/avatar3.jpg`, "72x72")}
+                    src={getAssetPath(`${user.Profile_Photo}`, "72x72")}
                 />
             }
-            title={"Kiley Brown"}
-            subheader={<Typography fontSize={12} variant={'body1'} color={'inherit'} mt={.5}>Florida, USA</Typography>}
+            title={user.full_name}
+            subheader={<Typography fontSize={12} variant={'body1'} color={'inherit'} mt={.5}>{user.location}</Typography>}
             children={
                 <Stack
                     direction={"row"}

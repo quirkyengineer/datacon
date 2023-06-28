@@ -11,7 +11,7 @@ const UserProfileSidebar = () => {
                 <Contacts/>
             </Grid>
             <Grid item xs={12} md={6} lg={12}>
-                <Friends/>
+                {/* <Friends/> */}
             </Grid>
             <Grid item xs={12} md={6} lg={12}>
                 <Photos/>

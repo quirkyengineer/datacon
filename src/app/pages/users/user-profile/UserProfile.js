@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from "./Header";
 import JumboContentLayout from "@jumbo/components/JumboContentLayout";
 import useJumboTheme from "@jumbo/hooks/useJumboTheme";
@@ -9,12 +9,37 @@ import Biography from "./components/Biography";
 import UserProfileSidebar from "./UserProfileSidebar";
 import {ASSET_IMAGES} from "../../../utils/constants/paths";
 import {getAssetPath} from "../../../utils/appHelpers";
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+
 
 const UserProfile = () => {
     const {theme} = useJumboTheme();
+    const { id } = useParams();
+    const [user, setUser] = useState(null);
+    const [isLoading, setIsLoading] = useState(true); // Add a loading state
+
+    useEffect(() => {
+        axios.get(`https://649a9b61bf7c145d02391c63.mockapi.io/linkedin`)
+            .then(response => {
+          
+                const user = response.data.find(user => Number(user.id) === Number(id));
+                setUser(user);
+                setIsLoading(false); // Set loading to false after the data is fetched
+
+             })
+            .catch(error => {
+                console.error('Error fetching user:', error);
+            });
+    }, [id]);
+    
+    if (isLoading) {
+        return <p>Loading...</p>;
+    }
+
     return (
         <JumboContentLayout
-            header={<Header/>}
+            header={<Header user={user}/>}
             sidebar={<UserProfileSidebar/>}
             layoutOptions={{
                 header: {
@@ -65,7 +90,7 @@ const UserProfile = () => {
             }}
         >
             <About/>
-            <Biography/>
+            <Biography bio={user.about_info}/>
             <Events sx={{mb: {xs: 3.75, lg: 0}}}/>
         </JumboContentLayout>
     );

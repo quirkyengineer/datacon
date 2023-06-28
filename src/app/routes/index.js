@@ -13,7 +13,7 @@ const routesForPublic = [
         element: <Page component={Home} />
     },
     {
-        path: "/user/profile",
+        path: "/user/profile/:id",
         element: <Page component={UserProfile}/>
     },
     {
