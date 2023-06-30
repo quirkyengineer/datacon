@@ -29,7 +29,7 @@ const SearchGlobal = ({sx, setApiResponse}) => {
     const fetchData = useCallback(() => {
 
         let formData = new FormData();
-        formData.append('entityName', selectedOption);
+        formData.append('entityName', "adani group");
 
         axios({
             method: 'post',
