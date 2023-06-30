@@ -53,7 +53,7 @@ const Header = ({user}) => {
                     }}
                 >
                     <Item>
-                        <Typography variant={"h6"} color={'inherit'} mb={0}>457</Typography>
+                        <Typography variant={"h6"} color={'inherit'} mb={0}>86 / 100</Typography>
                         <Typography variant={'body1'} fontSize={12}>Overall Score</Typography>
                     </Item>
                     {/* <Item>

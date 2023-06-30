@@ -10,10 +10,16 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Button from "@mui/material/Button";
 import Div from "@jumbo/shared/Div";
 import JumboDdPopover from "@jumbo/components/JumboDdPopover";
-import {CardActions, ThemeProvider} from "@mui/material";
+import {Card, CardActions, CardMedia, ThemeProvider} from "@mui/material";
 import useJumboTheme from "@jumbo/hooks/useJumboTheme";
 
 const MessagesDropdown = () => {
+    const [isCardVisible, setCardVisible] = useState(false); // start with the card hidden
+
+    const handleClick = () => {
+        setCardVisible(!isCardVisible); // toggle visibility on button click
+      };
+    
     const [showSettings, setShowSettings] = useState(false);
     const {theme} = useJumboTheme();
 
@@ -34,25 +40,22 @@ const MessagesDropdown = () => {
                             <SettingsList/>
                         </Div>
                         :
-                        <Div sx={{width: 360, maxWidth: '100%'}}>
-                            <MessagesHeader settingMenuCallback={toggleSettingWindow}/>
-                            <Div sx={{m: 2, mt: 0}}>
-                                <SearchMessages/>
-                            </Div>
-                            <MessagesList/>
-                            <Divider/>
-                            <CardActions sx={{justifyContent: 'center'}}>
-                                <Button
-                                    sx={{
-                                        textTransform: "none",
-                                        fontWeight: 'normal',
-                                        '&:hover': {bgcolor: 'transparent'}
-                                    }}
-                                    size={"small"} variant="text" endIcon={<ArrowForwardIcon/>} disableRipple>
-                                    View All
-                                </Button>
-                            </CardActions>
-                        </Div>
+                        <Card
+                            sx={{
+                                width: '400px',  // width of card
+                                height: '600px',  // height of card
+                                position: 'fixed',  // makes the card float
+                                bottom: '10px',  // distance from bottom
+                                right: '10px',  // distance from right
+                            }}
+                        >
+                            <CardMedia
+                                component="iframe"
+                                sx={{ height: "100%" }} // You can adjust the height as you need.
+                                title="Some title"
+                                src="https://uploader-mini.vercel.app/" // Your iframe src goes here.
+                            />
+                        </Card>
                 }
             </JumboDdPopover>
         </ThemeProvider>

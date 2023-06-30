@@ -1,4 +1,4 @@
-import { Card, Chip, Divider, Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material';
+import { Card, CardMedia, Chip, Divider, Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material';
 import React, { useCallback, useState } from 'react';
 import { users } from './data';
 import UserItem from './UserItem';
@@ -10,7 +10,12 @@ import axios from 'axios';
 import FolderIcon from '@mui/icons-material/Folder';
 const Home = () => {
     const [apiResponse, setApiResponse] = useState(null);
+    // const [isCardVisible, setCardVisible] = useState(false); // start with the card hidden
 
+    // const handleClick = () => {
+    //     setCardVisible(!isCardVisible); // toggle visibility on button click
+    //   };
+    
 
     const CKYCData = [
 
@@ -125,8 +130,7 @@ const Home = () => {
     ]
 
     return (
-        console.log(apiResponse),
-        <React.Fragment>
+         <React.Fragment>
             <SearchGlobal
                 sx={{
                     maxWidth: { xs: 240, md: 320 }
@@ -151,7 +155,7 @@ const Home = () => {
                             <Card variant="outlined" sx={{ padding: '18px', marginBottom: '20px' }}>
                                 <Typography variant={'h2'} mb={1}>{apiResponse.PERSONAL_DETAILS.FULL_NAME}</Typography>
                                 <Typography variant={'h6'} mb={1}><strong>Date of Incorporation</strong> : {apiResponse.PERSONAL_DETAILS.DOB}</Typography>
-                                <Typography variant={'h6'} mb={1}><strong>Plance of Incorporation </strong>: {apiResponse.PERSONAL_DETAILS.PLACE_INC}</Typography>
+                                <Typography variant={'h6'} mb={1}><strong>Place of Incorporation </strong>: {apiResponse.PERSONAL_DETAILS.PLACE_INC}</Typography>
                                 <Typography variant={'h6'} mb={1}><strong>PAN </strong>: {apiResponse.PERSONAL_DETAILS.PAN}</Typography>
                                 <Typography variant={'h6'} mb={1}><strong>Email </strong>: {apiResponse.url}</Typography>
                                 <Typography variant={'p'} mb={3}>{apiResponse.about}</Typography>
@@ -198,7 +202,7 @@ const Home = () => {
                             <Grid 
                                   container
                                   spacing={2}
-                                  direction="row"
+                                  direction="column"
                                   justifyContent="center"
                                   alignItems="flex-start"
                                   mt={-1}
@@ -340,10 +344,10 @@ const Home = () => {
                              </Grid>
                     </Grid>
                 </Grid>
-
+                
             }
 
-
+            
 
         </React.Fragment>
     );

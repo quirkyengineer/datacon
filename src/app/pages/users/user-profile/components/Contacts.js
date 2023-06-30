@@ -16,7 +16,7 @@ const Contacts = () => {
                     </ListItemIcon>
                     <ListItemText
                         primary={<Typography variant="body1" color="text.secondary">Email</Typography>}
-                        secondary={<Typography variant="body1" color="text.primary">Not available</Typography>}
+                        secondary={<Typography variant="body1" color="text.primary">g.adani@adani.com</Typography>}
                     />
                 </ListItem>
                 <ListItem alignItems="flex-start" sx={{p: theme => theme.spacing(.5, 3)}}>
