@@ -10,19 +10,6 @@ import axios from 'axios';
 
 const Home = () => {
     const [apiResponse, setApiResponse] = useState(null);
-    const [ckycdata, setCkycdata] = useState(null);
-
-
-    const fetchData = useCallback(() => {
-        // axios.get(`https://649a9b61bf7c145d02391c63.mockapi.io/search`)
-        axios.get(`https://b39a-2401-4900-1c2d-7a01-2c5f-7e23-fdfc-137d.ngrok-free.app/getCompanydetails`)
-            .then((response) => {
-                 setCkycdata(response.data);  // Store the response
-            })
-            .catch((error) => {
-                console.error('Error fetching data: ', error);
-            });
-    }, [setCkycdata]);
 
 
     const CKYCData = [
@@ -134,7 +121,7 @@ const Home = () => {
     ]
 
     return (
-        console.log(mockData),
+        console.log(apiResponse),
         <React.Fragment>
             <SearchGlobal
                 sx={{
@@ -158,12 +145,12 @@ const Home = () => {
                         <Grid container item spacing={3}>
                             <Typography variant={'h2'} mb={1}>Company profile</Typography>
                             <Card variant="outlined" sx={{ padding: '18px', marginBottom: '20px' }}>
-                                <Typography variant={'h2'} mb={1}>{apiResponse[0].PERSONAL_DETAILS.FULL_NAME}</Typography>
-                                <Typography variant={'h6'} mb={1}><strong>Date of Incorporation</strong> : {apiResponse[0].PERSONAL_DETAILS.DOB}</Typography>
-                                <Typography variant={'h6'} mb={1}><strong>Plance of Incorporation </strong>: {apiResponse[0].PERSONAL_DETAILS.PLACE_INC}</Typography>
-                                <Typography variant={'h6'} mb={1}><strong>PAN </strong>: {apiResponse[0].PERSONAL_DETAILS.PAN}</Typography>
-                                <Typography variant={'h6'} mb={1}><strong>Email </strong>: {apiResponse[0].url}</Typography>
-                                <Typography variant={'p'} mb={3}>{apiResponse[0].about}</Typography>
+                                <Typography variant={'h2'} mb={1}>{apiResponse.PERSONAL_DETAILS.FULL_NAME}</Typography>
+                                <Typography variant={'h6'} mb={1}><strong>Date of Incorporation</strong> : {apiResponse.PERSONAL_DETAILS.DOB}</Typography>
+                                <Typography variant={'h6'} mb={1}><strong>Plance of Incorporation </strong>: {apiResponse.PERSONAL_DETAILS.PLACE_INC}</Typography>
+                                <Typography variant={'h6'} mb={1}><strong>PAN </strong>: {apiResponse.PERSONAL_DETAILS.PAN}</Typography>
+                                <Typography variant={'h6'} mb={1}><strong>Email </strong>: {apiResponse.url}</Typography>
+                                <Typography variant={'p'} mb={3}>{apiResponse.about}</Typography>
                             </Card>
 
                         </Grid>
@@ -213,7 +200,7 @@ const Home = () => {
                                             mb={1}
                                         >
 
-                                            <Typography variant='h3'>Political inclination</Typography>
+                                            <Typography variant='h3'>Political exposure</Typography>
                                             <Grid
                                                 container
                                                 direction="row"
@@ -222,16 +209,16 @@ const Home = () => {
                                                 mb={1}
                                             >
 
-                                                <Typography variant={'h4'} pt={1} mr={1}>Left : {mockData[0].political_inclination.score.left_wing} | </Typography>
-                                                <Typography variant={'h4'} pt={1} mr={1}>Right : {mockData[0].political_inclination.score.right_wing} </Typography>
+                                                {/* <Typography variant={'h4'} pt={1} mr={1}>Left : {mockData[0].political_inclination.score.left_wing} | </Typography>
+                                                <Typography variant={'h4'} pt={1} mr={1}>Right : {mockData[0].political_inclination.score.right_wing} </Typography> */}
 
-                                                <Chip
-                                                    color="warning"
+                                                {/* <Chip
+                                                    color="info"
                                                     onClick={function () { }}
                                                     size="sm"
                                                     variant="soft"
                                                     label="Right wing dominant"
-                                                />
+                                                /> */}
                                             </Grid>
                                             <Typography variant={'p'} mb={3}>{mockData[0].political_inclination.remark}</Typography>
                                         </Grid>
@@ -278,7 +265,7 @@ const Home = () => {
                                             mb={1}
                                         >
 
-                                            <Typography variant='h3'>Travel to sanctioned countries</Typography>
+                                            <Typography variant='h3'>Business exposure</Typography>
                                             <Grid
                                                 container
                                                 direction="row"
@@ -287,7 +274,7 @@ const Home = () => {
                                                 mb={1}
                                             >
 
-                                                <Typography variant={'h4'} pt={1} mr={1}>Score : {mockData[0].traveled_sanctioned_country.score}</Typography>
+                                                <Typography variant={'h4'} pt={1} mr={1}>Score : {mockData[0].business_exposer.score}</Typography>
 
                                                 <Chip
                                                     color="warning"
@@ -297,7 +284,7 @@ const Home = () => {
                                                     label="Moderate risk"
                                                 />
                                             </Grid>
-                                            <Typography variant={'p'} mb={3}>{mockData[0].traveled_sanctioned_country.remark}</Typography>
+                                            <Typography variant={'p'} mb={3}>{mockData[0].business_exposer.remark}</Typography>
                                         </Grid>
                                     </ListItem>
                                     {/* <Divider /> */}
@@ -313,8 +300,8 @@ const Home = () => {
                     </Grid>
                     <Grid item xs={8}>
                         <Typography variant={'h2'} mb={1}>Connected parties</Typography>
-                        {apiResponse.map((user, index) => (
-                            <UserItem RELATED_PERSON_DETAILS={CKYCData[0].RELATED_PERSON_DETAILS[index]} user={user} key={index} />
+                        {apiResponse.RELATED_PERSON_DETAILS.map((user, index) => (
+                            <UserItem id={index} user={user.RELATED_PERSONS} key={index} />
                         ))}
                     </Grid>
                 </Grid>

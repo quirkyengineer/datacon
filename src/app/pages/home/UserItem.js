@@ -17,11 +17,11 @@ const Item = styled(Span)(({theme}) => ({
     padding: theme.spacing(0, 1),
 }));
 
-const UserItem = ({user, RELATED_PERSON_DETAILS}) => {
-     const navigate = useNavigate();
+const UserItem = ({user, id}) => {
+      const navigate = useNavigate();
     
     const handleClick = () => {
-        navigate(`/user/profile/${user.id}`);
+        navigate(`/user/profile/${id}`);
     };
     return (
         <Card sx={{mb: 1}}>
@@ -63,12 +63,12 @@ const UserItem = ({user, RELATED_PERSON_DETAILS}) => {
                             </Badge>
                         </Item>
                         <Item>
-                            <Typography variant={"h6"} mb={.5}>{`${user.name}`}</Typography>
-                            <Typography variant={"body1"} color="text.secondary">{user.email}</Typography>
+                            <Typography variant={"h6"} mb={.5}>{`${user.PREFIX} ${user.FNAME} ${user.LNAME}`}</Typography>
+                            {/* <Typography variant={"body1"} color="text.secondary">{user.email}</Typography> */}
                         </Item>
                     </Stack>
                 </Item>
-                <Item
+                {/* <Item
                     sx={{
                         alignSelf: 'flex-start',
                         flexBasis: {md: '28%', lg: '18%'},
@@ -78,7 +78,7 @@ const UserItem = ({user, RELATED_PERSON_DETAILS}) => {
                 >
                     <Typography variant={"h6"}  mt={1} mb={.5}>Designation</Typography>
                     <Typography variant={"body1"} color="text.secondary">{user.designation}</Typography>
-                </Item>
+                </Item> */}
                 {/* <Item
                     sx={{
                         flexBasis: '30%',

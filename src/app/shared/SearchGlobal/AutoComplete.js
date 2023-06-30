@@ -83,7 +83,7 @@ export default function Asynchronous({onOptionSelect}) {
 // Top films as rated by IMDb users. http://www.imdb.com/chart/top
 const topFilms = [
     {
-        name: "adani group",
+        name: "ADANI GROUP",
         isin: "INE198H01019",
         token: "524412",
         exchange: "BSE"
