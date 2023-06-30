@@ -1,14 +1,113 @@
 import { Card, Chip, Divider, Grid, List, ListItem, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { users } from './data';
 import UserItem from './UserItem';
 import SearchGlobal from 'app/shared/SearchGlobal/SearchGlobal';
 import JumboCardQuick from '@jumbo/components/JumboCardQuick/JumboCardQuick';
 import JumboContentLayout from '@jumbo/components/JumboContentLayout/JumboContentLayout';
+import Asynchronous from 'app/shared/SearchGlobal/AutoComplete';
+import axios from 'axios';
 
 const Home = () => {
     const [apiResponse, setApiResponse] = useState(null);
+    const [ckycdata, setCkycdata] = useState(null);
 
+
+    const fetchData = useCallback(() => {
+        // axios.get(`https://649a9b61bf7c145d02391c63.mockapi.io/search`)
+        axios.get(`https://b39a-2401-4900-1c2d-7a01-2c5f-7e23-fdfc-137d.ngrok-free.app/getCompanydetails`)
+            .then((response) => {
+                 setCkycdata(response.data);  // Store the response
+            })
+            .catch((error) => {
+                console.error('Error fetching data: ', error);
+            });
+    }, [setCkycdata]);
+
+
+    const CKYCData = [
+
+        {
+            PERSONAL_DETAILS: {
+                CKYC_NO: "70086178766160",
+                FULL_NAME: "ADANI WILMAR LIMITED",
+                DOB: "22-01-1999",
+                PLACE_INC: "AHMEDABAD",
+                PAN: "AABCA8056G",
+                PERM_LINE1: "FORTUNE HOUSE",
+                PERM_LINE2: "RAILWAY CROSSING",
+                PERM_LINE3: "",
+                PERM_CITY: "AHMEDABAD",
+                PERM_DIST: "AHMEDABAD",
+                PERM_STATE: "GJ",
+                PERM_COUNTRY: "IN",
+                PERM_PIN: "380009",
+                PERM_POA: "07",
+                CORRES_LINE1: "10TH FLOOR TULSIANI CHAMBER",
+                CORRES_LINE2: "NARIMAN POINT",
+                CORRES_LINE3: "Test",
+                CORRES_CITY: "AHMEDABAD",
+                CORRES_DIST: "AHMEDABAD",
+                CORRES_STATE: "GJ",
+                CORRES_COUNTRY: "IN",
+                CORRES_PIN: "380009",
+                CORRES_POA: "00",
+                PROOF_ADDRESS: "0",
+                OFF_STD_CODE: "",
+                OFF_TEL_NUM: "",
+                MOB_CODE1: "",
+                MOB_NUM1: "",
+                MOB_CODE2: "",
+                MOB_NUM2: "",
+                EMAIL: "GAURISHANKAR.MISHRA@WILMAR.COM",
+                EMAIL2: "SAGAR.TRIVEDI@WILMAR.COM",
+                REMARKS: ""
+            },
+
+
+
+            RELATED_PERSON_DETAILS: [
+                {
+                 RELATED_PERSONS: {
+                        PREFIX: "MR",
+                        FNAME: "AJAY",
+                        MNAME: "",
+                        LNAME: "RAJGURU",
+                        FATHER_PREFIX: "MR",
+                        FATHER_FNAME: "RAHUL",
+                        FATHER_MNAME: "KISHAN",
+                        FATHER_LNAME: "SABLE",
+                        MOTHER_PREFIX: "MRS",
+                        MOTHER_ENAME: "LATA",
+                        MOTHER_MNAME: "ASHA",
+                        MOTHER_LNAME: "KORU",
+                        DOB: "04-07-1984",
+                        GENDER: "M"
+                    }
+                },
+                {
+                    RELATED_PERSONS: {
+                        PREFIX: "MR",
+                        FNAME: "ASHWINKUMAR",
+                        MNAME: "RAMABHAI",
+                        LNAME: "PATEL",
+                        FATHER_PREFIX: "MR",
+                        FATHER_FNAME: "ABHIJIT",
+                        FATHER_MNAME: "LAXMIKANT",
+                        FATHER_LNAME: "JOSHI",
+                        MOTHER_PREFIX: "MRS",
+                        MOTHER_ENAME: "",
+                        MOTHER_MNAME: "",
+                        MOTHER_LNAME: "",
+                        DOB: "04-07-1982",
+                        GENDER: "M"
+                    }
+                }
+            ]
+        }
+
+
+    ];
     const mockData = [
         {
             sentiment_analysis: {
@@ -44,6 +143,7 @@ const Home = () => {
                 mb={4}
                 setApiResponse={setApiResponse}
             />
+            
             {apiResponse &&
                 <Grid
                     container
@@ -51,15 +151,19 @@ const Home = () => {
                     direction="row"
                     justifyContent="center"
                     alignItems="flex-start"
-                    sx={{ marginTop: '20px' }}
+                    sx={{ marginTop: '20px', paddingX: '20px' }}
                 >
 
                     <Grid container item xs={4} mt={3}>
                         <Grid container item spacing={3}>
                             <Typography variant={'h2'} mb={1}>Company profile</Typography>
                             <Card variant="outlined" sx={{ padding: '18px', marginBottom: '20px' }}>
-                                <Typography variant={'h2'} mb={1}>{apiResponse[0].company}</Typography>
-                                <Typography variant={'p'} mb={3}>{apiResponse[0].companydesc}</Typography>
+                                <Typography variant={'h2'} mb={1}>{apiResponse[0].PERSONAL_DETAILS.FULL_NAME}</Typography>
+                                <Typography variant={'h6'} mb={1}><strong>Date of Incorporation</strong> : {apiResponse[0].PERSONAL_DETAILS.DOB}</Typography>
+                                <Typography variant={'h6'} mb={1}><strong>Plance of Incorporation </strong>: {apiResponse[0].PERSONAL_DETAILS.PLACE_INC}</Typography>
+                                <Typography variant={'h6'} mb={1}><strong>PAN </strong>: {apiResponse[0].PERSONAL_DETAILS.PAN}</Typography>
+                                <Typography variant={'h6'} mb={1}><strong>Email </strong>: {apiResponse[0].url}</Typography>
+                                <Typography variant={'p'} mb={3}>{apiResponse[0].about}</Typography>
                             </Card>
 
                         </Grid>
@@ -78,7 +182,7 @@ const Home = () => {
                                             mb={1}
                                         >
 
-                                            <Typography variant='h3'>Company sentiment</Typography>
+                                            <Typography variant='h3'>Company outlook</Typography>
                                             <Grid
                                                 container
                                                 direction="row"
@@ -210,7 +314,7 @@ const Home = () => {
                     <Grid item xs={8}>
                         <Typography variant={'h2'} mb={1}>Connected parties</Typography>
                         {apiResponse.map((user, index) => (
-                            <UserItem user={user} key={index} />
+                            <UserItem RELATED_PERSON_DETAILS={CKYCData[0].RELATED_PERSON_DETAILS[index]} user={user} key={index} />
                         ))}
                     </Grid>
                 </Grid>

@@ -17,9 +17,9 @@ const Item = styled(Span)(({theme}) => ({
     padding: theme.spacing(0, 1),
 }));
 
-const UserItem = ({user}) => {
-    const navigate = useNavigate();
-
+const UserItem = ({user, RELATED_PERSON_DETAILS}) => {
+     const navigate = useNavigate();
+    
     const handleClick = () => {
         navigate(`/user/profile/${user.id}`);
     };
@@ -79,7 +79,7 @@ const UserItem = ({user}) => {
                     <Typography variant={"h6"}  mt={1} mb={.5}>Designation</Typography>
                     <Typography variant={"body1"} color="text.secondary">{user.designation}</Typography>
                 </Item>
-                <Item
+                {/* <Item
                     sx={{
                         flexBasis: '30%',
                         display: {xs: 'none', lg: 'block'}
@@ -116,7 +116,7 @@ const UserItem = ({user}) => {
 
                         </Item>
                     </Stack>
-                </Item>
+                </Item> */}
                 
                 <Item
                     sx={{
