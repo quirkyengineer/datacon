@@ -23,8 +23,8 @@ const UserProfile = () => {
         axios.get(`https://649a9b61bf7c145d02391c63.mockapi.io/linkedin`)
             .then(response => {
           
-                const user = response.data.find(user => Number(user.id) === Number(id));
-                setUser(user);
+                // const user = response.data.find(user => Number(user.id) === Number(id));
+                setUser(response.data[0]);
                 setIsLoading(false); // Set loading to false after the data is fetched
 
              })
@@ -89,9 +89,9 @@ const UserProfile = () => {
                 }
             }}
         >
-            <About/>
+            <About user={user}/>
             <Biography bio={user.about_info}/>
-            <Events sx={{mb: {xs: 3.75, lg: 0}}}/>
+            {/* <Events sx={{mb: {xs: 3.75, lg: 0}}}/> */}
         </JumboContentLayout>
     );
 };

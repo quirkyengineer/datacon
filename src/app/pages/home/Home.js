@@ -1,4 +1,4 @@
-import { Card, Chip, Divider, Grid, List, ListItem, Typography } from '@mui/material';
+import { Card, Chip, Divider, Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material';
 import React, { useCallback, useState } from 'react';
 import { users } from './data';
 import UserItem from './UserItem';
@@ -7,7 +7,7 @@ import JumboCardQuick from '@jumbo/components/JumboCardQuick/JumboCardQuick';
 import JumboContentLayout from '@jumbo/components/JumboContentLayout/JumboContentLayout';
 import Asynchronous from 'app/shared/SearchGlobal/AutoComplete';
 import axios from 'axios';
-
+import FolderIcon from '@mui/icons-material/Folder';
 const Home = () => {
     const [apiResponse, setApiResponse] = useState(null);
 
@@ -102,10 +102,11 @@ const Home = () => {
                 remark: "The sentiment of this text is generally positive. Adani Group is making significant investments in various sectors, and Gautam Adani is making a positive impact on the economy.The group has denied all allegations and is plotting a comeback strategy. Adani has also won the world's largest solar bid and is investing in green energy. Overall, the sentiment of this text is positive."
             },
             political_inclination: {
-                score: {
-                    left_wing: "2/10",
-                    right_wing: "8/10"
-                },
+                // score: {
+                //     left_wing: "2/10",
+                //     right_wing: "8/10"
+                // },
+                score: "5/10",
                 remark: "The text is mostly focused on the business activities of Gautam Adani, the founder and chairman of the Adani Group. Adani has been described as being close to the Indian Prime Minister Narendra Modi and his ruling Bharatiya Janata Party, which is a right-wing political party. Adani has also won several large bids and investments, which is indicative of his right-wing economic policies."
             },
             criminal_background: {
@@ -116,7 +117,10 @@ const Home = () => {
                 score: "8/10",
                 remark: "Gautam Adani, Chairman of the Adani Group, is a billionaire industrialist who has embarked on a high-stakes journey to Afghanistan with the aim of striking a significant trade deal. He has also sought shareholder approval for Adani Transmission Ltd and Adani Green Energy, and has denied all allegations by Hindenburg Research. Adani has also pledged to bear the expenses of children who lost their parents in the Odisha train tragedy, and is investing US$70 billion"
             },
-            business_exposer: "updated"
+            business_exposer : {
+                remark: "The text provides a comprehensive overview of the Adani Group's business activities, including their investments in energy, ports, and airports, as well as their involvement in the Odisha train tragedy and their response to the Hindenburg Research report. The text also mentions Adani's involvement in Afghanistan, as well as his recent success in winning the world's largest solar bid. ",
+                score: "8/10"
+            }
         }
     ]
 
@@ -141,7 +145,7 @@ const Home = () => {
                     sx={{ marginTop: '20px', paddingX: '20px' }}
                 >
 
-                    <Grid container item xs={4} mt={3}>
+                    <Grid container item xs={4} mt={3} sx={{width: '100%'}}>
                         <Grid container item spacing={3}>
                             <Typography variant={'h2'} mb={1}>Company profile</Typography>
                             <Card variant="outlined" sx={{ padding: '18px', marginBottom: '20px' }}>
@@ -154,13 +158,55 @@ const Home = () => {
                             </Card>
 
                         </Grid>
-                        <Grid container item spacing={3}>
-                            <Typography variant={'h2'} mt={3}>Sentiment analysis
-
-                            </Typography>
+                       
+                        <Grid container item spacing={3} mt={1} sx={{width:'100%'}}>
+                                <Typography variant={'h2'} mb={1}>Connected parties</Typography>
+                                {apiResponse.RELATED_PERSON_DETAILS.map((user, index) => (
+                                    <UserItem id={index} user={user.RELATED_PERSONS} key={index} sx={{width: '100%'}} />
+                                ))}
+                        </Grid>
+                        <Grid container direction={"column"} item spacing={3} mt={1} sx={{width:'100%'}}>
+                            <Typography variant={'h2'} mb={1}>Documents</Typography>
                             <Card variant="outlined" sx={{ padding: '18px', marginBottom: '20px' }}>
-                                <List>
-                                    <ListItem >
+                            <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
+                                <ListItem disablePadding>
+                                    <ListItemButton>
+                                        <ListItemIcon>  
+                                            <FolderIcon />
+                                             {/* <DescriptionIcon /> */}
+                                        </ListItemIcon>
+                                        <ListItemText primary="Annual Report 2022-23" />
+                                    </ListItemButton>
+                                </ListItem>
+                                <ListItem disablePadding>
+                                    <ListItemButton>
+                                        <ListItemIcon>
+                                        <FolderIcon />
+                                            {/* <DescriptionIcon /> */}
+                                        </ListItemIcon>
+                                        <ListItemText primary="Annual Filling 2022-23" />
+                                    </ListItemButton>
+                                </ListItem>
+                                </List>
+                                    </Card>
+                        </Grid>
+
+                    </Grid>
+                    <Grid item xs={8}>
+                    <Typography variant={'h2'} mb={1}>Sentiment analysis</Typography>
+                           
+                            <Grid 
+                                  container
+                                  spacing={2}
+                                  direction="row"
+                                  justifyContent="center"
+                                  alignItems="flex-start"
+                                  mt={-1}
+                                //   sx={{ marginTop: '0px' }}
+
+                            >
+                                <Grid container item xs={6} spacing={1}>
+                                    <Card variant="outlined" sx={{ padding: '18px', marginBottom: '20px' }} >
                                         <Grid
                                             container
                                             direction="column"
@@ -189,9 +235,8 @@ const Home = () => {
                                             </Grid>
                                             <Typography variant={'p'} mb={3}>{mockData[0].sentiment_analysis.remark}</Typography>
                                         </Grid>
-                                    </ListItem>
-                                    <Divider />
-                                    <ListItem >
+                                    </Card>
+                                    <Card variant="outlined" sx={{ padding: '18px', marginBottom: '20px' }} >
                                         <Grid
                                             container
                                             direction="column"
@@ -209,22 +254,23 @@ const Home = () => {
                                                 mb={1}
                                             >
 
-                                                {/* <Typography variant={'h4'} pt={1} mr={1}>Left : {mockData[0].political_inclination.score.left_wing} | </Typography>
-                                                <Typography variant={'h4'} pt={1} mr={1}>Right : {mockData[0].political_inclination.score.right_wing} </Typography> */}
+                                                {/* {/* <Typography variant={'h4'} pt={1} mr={1}>Left : {mockData[0].political_inclination.score.left_wing} | </Typography> */}
+                                                <Typography variant={'h4'} pt={1} mr={1}>Score : {mockData[0].political_inclination.score} </Typography> 
 
-                                                {/* <Chip
+                                                <Chip
                                                     color="info"
                                                     onClick={function () { }}
                                                     size="sm"
                                                     variant="soft"
-                                                    label="Right wing dominant"
-                                                /> */}
+                                                    label="Moderate exposure"
+                                                />
                                             </Grid>
                                             <Typography variant={'p'} mb={3}>{mockData[0].political_inclination.remark}</Typography>
                                         </Grid>
-                                    </ListItem>
-                                    <Divider />
-                                    <ListItem >
+                                    </Card>
+                                </Grid>
+                                <Grid container item xs={6} spacing={1}>
+                                    <Card variant="outlined" sx={{ padding: '18px', marginBottom: '20px' }} >
                                         <Grid
                                             container
                                             direction="column"
@@ -254,9 +300,8 @@ const Home = () => {
                                             </Grid>
                                             <Typography variant={'p'} mb={3}>{mockData[0].criminal_background.remark}</Typography>
                                         </Grid>
-                                    </ListItem>
-                                    <Divider />
-                                    <ListItem >
+                                    </Card>
+                                    <Card variant="outlined" sx={{ padding: '18px', marginBottom: '20px' }} >
                                         <Grid
                                             container
                                             direction="column"
@@ -286,23 +331,13 @@ const Home = () => {
                                             </Grid>
                                             <Typography variant={'p'} mb={3}>{mockData[0].business_exposer.remark}</Typography>
                                         </Grid>
-                                    </ListItem>
+                                    </Card>
+                                </Grid>
+                                 
+                                    
                                     {/* <Divider /> */}
 
-                                </List>
-
-
-                            </Card>
-                        </Grid>
-                        <Grid container item spacing={3}>
-                        </Grid>
-
-                    </Grid>
-                    <Grid item xs={8}>
-                        <Typography variant={'h2'} mb={1}>Connected parties</Typography>
-                        {apiResponse.RELATED_PERSON_DETAILS.map((user, index) => (
-                            <UserItem id={index} user={user.RELATED_PERSONS} key={index} />
-                        ))}
+                             </Grid>
                     </Grid>
                 </Grid>
 

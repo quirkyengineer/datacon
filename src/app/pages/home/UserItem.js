@@ -21,17 +21,24 @@ const UserItem = ({user, id}) => {
       const navigate = useNavigate();
     
     const handleClick = () => {
-        navigate(`/user/profile/${id}`);
+        navigate(`/user/profile/${id+1}`);
     };
     return (
-        <Card sx={{mb: 1}}>
-            <Stack direction={"row"} alignItems={"center"} sx={{p: theme => theme.spacing(2, 1)}}>
+        <Card sx={{mb: 1,  width: '100%'}}>
+            <Stack 
+                direction={"row"}  
+                alignItems={"center"} 
+                justifyContent={"space-between"}
+                flexGrow={1}
+                sx={{p: theme => theme.spacing(2, 1),  width: '100%'}}
+                >
                 <Item
                     sx={{
-                        flex: {xs: 1, md: '0 1 45%', lg: '0 1 35%'}
+                        flex: {xs: 1},
+                        width: '100%',
                     }}
                 >
-                    <Stack direction={'row'} alignItems={'center'}>
+                    <Stack direction={'row'} alignItems={'center'}  >
                         {/* <Item sx={{ml: -1}}>
                             <JumboBookmark value={user.isFavorite} sx={{verticalAlign: 'middle'}}/>
                         </Item> */}

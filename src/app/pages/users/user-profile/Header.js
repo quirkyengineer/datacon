@@ -41,7 +41,7 @@ const Header = ({user}) => {
                 />
             }
             title={user.full_name}
-            subheader={<Typography fontSize={12} variant={'body1'} color={'inherit'} mt={.5}>{user.location}</Typography>}
+            subheader={<Typography fontSize={12} variant={'body1'} color={'inherit'} mt={.5}>{user.designation}</Typography>}
             children={
                 <Stack
                     direction={"row"}
@@ -54,16 +54,16 @@ const Header = ({user}) => {
                 >
                     <Item>
                         <Typography variant={"h6"} color={'inherit'} mb={0}>457</Typography>
-                        <Typography variant={'body1'} fontSize={12}>Followers</Typography>
+                        <Typography variant={'body1'} fontSize={12}>Overall Score</Typography>
                     </Item>
-                    <Item>
+                    {/* <Item>
                         <Typography variant={"h6"} color={'inherit'} mb={0}>689</Typography>
                         <Typography variant={'body1'} fontSize={12}>Friends</Typography>
                     </Item>
                     <Item>
                         <Typography variant={"h6"} color={'inherit'} mb={0}>283</Typography>
                         <Typography variant={'body1'} fontSize={12}>Following</Typography>
-                    </Item>
+                    </Item> */}
                 </Stack>
             }
             // tabs={

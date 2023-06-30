@@ -30,7 +30,7 @@ const StyledListItemIcon = styled(ListItemIcon)(({theme}) => ({
     justifyContent: 'center',
     border: `solid 1px ${theme.palette.divider}`
 }));
-const About = () => {
+const About = ({user}) => {
     const [value, setValue] = React.useState('1');
 
     const handleChange = (event, newValue) => {
@@ -54,7 +54,7 @@ const About = () => {
                         <TabList onChange={handleChange} aria-label="lab API tabs example">
                             <Tab label="Overview" value="1"/>
                             <Tab label="Work" value="2"/>
-                            <Tab label="Education" value="3"/>
+                            {/* <Tab label="Education" value="3"/> */}
                         </TabList>
                     </Div>
                 </TabContext>
@@ -83,9 +83,9 @@ const About = () => {
                     </StyledListItemIcon>
                     <ListItemText
                         primary={<Typography fontSize={"12px"} variant="h6" color="text.secondary" mb={.5}>
-                            Works at</Typography>}
+                            Works as</Typography>}
                         secondary={<Typography variant="body1" color="text.primary">
-                            G-axon Tech Pvt. Ltd.</Typography>}
+                          {user.designation}</Typography>}
                     />
                 </ListItem>
                 <ListItem
@@ -99,7 +99,7 @@ const About = () => {
                     <ListItemText
                         primary={<Typography fontSize={"12px"} variant="h6" color="text.secondary"
                                              mb={.5}>Birthday</Typography>}
-                        secondary={<Typography variant="body1" color="text.primary">Oct 25, 1984</Typography>}
+                        secondary={<Typography variant="body1" color="text.primary">{user.birthday}</Typography>}
                     />
                 </ListItem>
                 <ListItem
@@ -113,7 +113,7 @@ const About = () => {
                     <ListItemText
                         primary={<Typography fontSize={"12px"} variant="h6" color="text.secondary" mb={.5}>Went
                             to</Typography>}
-                        secondary={<Typography variant="body1" color="text.primary">Oxford University</Typography>}
+                        secondary={<Typography variant="body1" color="text.primary">Not available</Typography>}
                     />
                 </ListItem>
                 <ListItem
@@ -125,48 +125,43 @@ const About = () => {
                         <CottageOutlinedIcon fontSize={"inherit"}/>
                     </StyledListItemIcon>
                     <ListItemText
-                        primary={<Typography fontSize={"12px"} variant="h6" color="text.secondary" mb={.5}>Lives in
-                            London</Typography>}
-                        secondary={<Typography variant="body1" color="text.primary">From Switzerland</Typography>}
+                        primary={<Typography fontSize={"12px"} variant="h6" color="text.secondary" mb={.5}>Domicile
+                            </Typography>}
+                        secondary={<Typography variant="body1" color="text.primary">India</Typography>}
                     />
                 </ListItem>
                 <ListItem
                     sx={{
-                        width: {xs: '100%', xl: '66.67%'}
+                        width: {xs: '100%', xl: '33.33%'}
                     }}
                 >
                     <StyledListItemIcon>
                         <GroupsOutlinedIcon fontSize={"inherit"}/>
                     </StyledListItemIcon>
                     <ListItemText
-                        primary={<Typography fontSize={"12px"} variant="h6" color="text.secondary" mb={.5}>4 Family
-                            Members</Typography>}
+                        primary={<Typography fontSize={"12px"} variant="h6" color="text.secondary" mb={.5}>Fathers
+                            name</Typography>}
                         secondary={
                             <Typography component={"div"} variant={'body1'}>
-                                <Stack
-                                    direction={"row"}
-                                    flexWrap={"wrap"}
-                                    sx={{}}
-                                >
-                                    <AvatarGroup
-                                        max={5}
-                                        sx={{
-                                            '.MuiAvatar-root': {
-                                                height: 32,
-                                                width: 32,
-                                                fontSize: 13,
-                                                background: theme => theme.palette.grey[600]
-                                            }
-                                        }}
-                                    >
-                                        <Avatar alt="Remy Sharp" src={getAssetPath(`${ASSET_AVATARS}/avatar6.jpg`,"32x32")}/>
-                                        <Avatar alt="Remy Sharp" src={getAssetPath(`${ASSET_AVATARS}/avatar5.jpg`,"32x32")}/>
-                                        <Avatar alt="Remy Sharp" src={getAssetPath(`${ASSET_AVATARS}/avatar3.jpg`,"32x32")}/>
-                                        <Avatar alt="Remy Sharp" src={getAssetPath(`${ASSET_AVATARS}/avatar4.jpg`,"32x32")}/>
-                                        <Avatar alt="Remy Sharp" src={getAssetPath(`${ASSET_AVATARS}/avatar7.jpg`,"32x32")}/>
-                                        <Avatar alt="Remy Sharp" src={getAssetPath(`${ASSET_AVATARS}/avatar8.jpg`,"32x32")}/>
-                                    </AvatarGroup>
-                                </Stack>
+                                Shantilal Adani
+                            </Typography>
+                        }
+                    />
+                </ListItem>
+                <ListItem
+                    sx={{
+                        width: {xs: '100%', xl: '33.33%'}
+                    }}
+                >
+                    <StyledListItemIcon>
+                        <GroupsOutlinedIcon fontSize={"inherit"}/>
+                    </StyledListItemIcon>
+                    <ListItemText
+                        primary={<Typography fontSize={"12px"} variant="h6" color="text.secondary" mb={.5}>Mothers
+                            name</Typography>}
+                        secondary={
+                            <Typography component={"div"} variant={'body1'}>
+                                Shanti Adani
                             </Typography>
                         }
                     />
